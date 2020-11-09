@@ -1,18 +1,22 @@
 package com.rebwon.kurly.coupon.domain;
 
+import com.rebwon.kurly.coupon.domain.exception.MinOrderAmountLessThanZero;
 import com.rebwon.kurly.general.domain.Money;
 import com.rebwon.kurly.order.domain.Order;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 public abstract class Coupon {
-  private UUID generalNumber;
   private Money minOrderAmount;
 
   protected Coupon(Money minOrderAmount) {
-    this.generalNumber = UUID.randomUUID();
-    this.minOrderAmount = minOrderAmount;
+    assert minOrderAmount != null;
+    this.minOrderAmount = validate(minOrderAmount);
+  }
+
+  private Money validate(Money minOrderAmount) {
+    if(minOrderAmount.isLessThan(Money.ZERO))
+      throw new MinOrderAmountLessThanZero();
+    return minOrderAmount;
   }
 
   protected boolean isSatisfiedBy(Money other) {
@@ -20,21 +24,4 @@ public abstract class Coupon {
   }
 
   public abstract Money calculateDiscountAmount(List<Order> orders);
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Coupon coupon = (Coupon) o;
-    return Objects.equals(generalNumber, coupon.generalNumber);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(generalNumber);
-  }
 }

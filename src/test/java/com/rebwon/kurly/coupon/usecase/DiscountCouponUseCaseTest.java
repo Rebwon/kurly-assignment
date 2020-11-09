@@ -2,7 +2,7 @@ package com.rebwon.kurly.coupon.usecase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.rebwon.kurly.common.UseCase;
+import com.rebwon.kurly.common.usecase.UseCase;
 import com.rebwon.kurly.coupon.domain.AmountDiscountCoupon;
 import com.rebwon.kurly.coupon.domain.PercentDiscountCoupon;
 import com.rebwon.kurly.general.domain.Money;

@@ -1,6 +1,6 @@
 package com.rebwon.kurly.coupon.usecase;
 
-import com.rebwon.kurly.common.UseCaseResponse;
+import com.rebwon.kurly.common.usecase.UseCaseResponse;
 import com.rebwon.kurly.general.domain.Money;
 
 public class DiscountResponse implements UseCaseResponse {
