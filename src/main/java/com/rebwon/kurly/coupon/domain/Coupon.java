@@ -8,9 +8,9 @@ import java.util.UUID;
 
 public abstract class Coupon {
   private UUID generalNumber;
-  protected Money minOrderAmount;
+  private Money minOrderAmount;
 
-  public Coupon(Money minOrderAmount) {
+  protected Coupon(Money minOrderAmount) {
     this.generalNumber = UUID.randomUUID();
     this.minOrderAmount = minOrderAmount;
   }
