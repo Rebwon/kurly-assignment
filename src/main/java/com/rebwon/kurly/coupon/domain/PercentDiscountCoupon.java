@@ -19,7 +19,7 @@ public class PercentDiscountCoupon extends Coupon {
   private Ratio validate(Ratio ratio) {
     if(ratio.getRate() < 0)
       throw new DiscountRateLessThanZero();
-    if(ratio.getRate() > 100)
+    if(ratio.getRate() > 1)
       throw new DiscountRateGreatherThanOnehundredPercent();
     return ratio;
   }
