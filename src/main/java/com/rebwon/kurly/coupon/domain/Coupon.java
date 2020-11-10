@@ -4,12 +4,13 @@ import com.rebwon.kurly.coupon.domain.exception.MinOrderAmountLessThanZero;
 import com.rebwon.kurly.general.domain.Money;
 import com.rebwon.kurly.order.domain.Order;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Coupon {
   private Money minOrderAmount;
 
   protected Coupon(Money minOrderAmount) {
-    assert minOrderAmount != null;
+    Objects.requireNonNull(minOrderAmount);
     this.minOrderAmount = validate(minOrderAmount);
   }
 

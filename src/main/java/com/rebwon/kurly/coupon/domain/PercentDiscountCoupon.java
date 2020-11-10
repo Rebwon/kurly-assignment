@@ -6,13 +6,14 @@ import com.rebwon.kurly.general.domain.Money;
 import com.rebwon.kurly.general.domain.Ratio;
 import com.rebwon.kurly.order.domain.Order;
 import java.util.List;
+import java.util.Objects;
 
 public class PercentDiscountCoupon extends Coupon {
   private Ratio ratio;
 
   public PercentDiscountCoupon(Money minOrderAmount, Ratio ratio) {
     super(minOrderAmount);
-    assert ratio != null;
+    Objects.requireNonNull(ratio);
     this.ratio = validate(ratio);
   }
 
