@@ -6,10 +6,10 @@ import com.rebwon.kurly.order.domain.Order;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Coupon {
+public abstract class AbstractCoupon {
   private Money minOrderAmount;
 
-  protected Coupon(Money minOrderAmount) {
+  protected AbstractCoupon(Money minOrderAmount) {
     Objects.requireNonNull(minOrderAmount);
     this.minOrderAmount = validate(minOrderAmount);
   }
@@ -20,7 +20,7 @@ public abstract class Coupon {
     return minOrderAmount;
   }
 
-  protected boolean isSatisfiedBy(Money other) {
+  protected boolean isLessThanMinOrderAmount(Money other) {
     return other.isLessThan(this.minOrderAmount);
   }
 

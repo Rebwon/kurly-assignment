@@ -6,7 +6,7 @@ import com.rebwon.kurly.order.domain.Order;
 import java.util.List;
 import java.util.Objects;
 
-public class AmountDiscountCoupon extends Coupon {
+public class AmountDiscountCoupon extends AbstractCoupon {
   private Money discountAmount;
 
   public AmountDiscountCoupon(Money minOrderAmount, Money discountAmount) {
@@ -24,7 +24,7 @@ public class AmountDiscountCoupon extends Coupon {
   @Override
   public Money calculateDiscountAmount(List<Order> orders) {
     Money totalAmount = Money.sum(orders, Order::totalAmount);
-    if(isSatisfiedBy(totalAmount)) {
+    if(isLessThanMinOrderAmount(totalAmount)) {
       return Money.ZERO;
     }
     return discountAmount;

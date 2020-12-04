@@ -10,6 +10,6 @@ public class DiscountCouponUseCase implements UseCase<DiscountRequest, DiscountR
   public DiscountResponse execute(DiscountRequest request) {
     Objects.requireNonNull(request);
     Money money = request.getCoupon().calculateDiscountAmount(request.getOrders());
-    return money.equals(Money.ZERO) ? new DiscountResponse(false, Money.ZERO) : new DiscountResponse(true, money);
+    return money.equals(Money.ZERO) ? new DiscountResponse(false, money) : new DiscountResponse(true, money);
   }
 }

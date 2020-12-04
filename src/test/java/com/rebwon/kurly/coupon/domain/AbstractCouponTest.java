@@ -10,7 +10,7 @@ import com.rebwon.kurly.general.domain.Money;
 import com.rebwon.kurly.general.domain.Ratio;
 import org.junit.jupiter.api.Test;
 
-class CouponTest {
+class AbstractCouponTest {
 
   @Test
   void when_AmountDiscountCoupon_Create_Than_MinOrderAmountLessThanZero() {

@@ -8,7 +8,7 @@ import com.rebwon.kurly.order.domain.Order;
 import java.util.List;
 import java.util.Objects;
 
-public class PercentDiscountCoupon extends Coupon {
+public class PercentDiscountCoupon extends AbstractCoupon {
   private Ratio ratio;
 
   public PercentDiscountCoupon(Money minOrderAmount, Ratio ratio) {
@@ -28,7 +28,7 @@ public class PercentDiscountCoupon extends Coupon {
   @Override
   public Money calculateDiscountAmount(List<Order> orders) {
     Money totalAmount = Money.sum(orders, Order::totalAmount);
-    if(isSatisfiedBy(totalAmount)) {
+    if(isLessThanMinOrderAmount(totalAmount)) {
       return Money.ZERO;
     }
 
