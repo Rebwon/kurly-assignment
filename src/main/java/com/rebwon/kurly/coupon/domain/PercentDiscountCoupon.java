@@ -26,12 +26,7 @@ public class PercentDiscountCoupon extends AbstractCoupon {
   }
 
   @Override
-  public Money calculateDiscountAmount(List<Order> orders) {
-    Money totalAmount = Money.sum(orders, Order::totalAmount);
-    if(isLessThanMinOrderAmount(totalAmount)) {
-      return Money.ZERO;
-    }
-
+  protected Money getDiscountAmount(Money totalAmount) {
     return this.ratio.of(totalAmount);
   }
 }

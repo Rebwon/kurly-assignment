@@ -20,9 +20,17 @@ public abstract class AbstractCoupon {
     return minOrderAmount;
   }
 
-  protected boolean isLessThanMinOrderAmount(Money other) {
+  private boolean isLessThanMinOrderAmount(Money other) {
     return other.isLessThan(this.minOrderAmount);
   }
 
-  public abstract Money calculateDiscountAmount(List<Order> orders);
+  public Money calculateDiscountAmount(List<Order> orders) {
+    Money totalAmount = Money.sum(orders, Order::totalAmount);
+    if(isLessThanMinOrderAmount(totalAmount)) {
+      return Money.ZERO;
+    }
+    return getDiscountAmount(totalAmount);
+  }
+
+  protected abstract Money getDiscountAmount(Money totalAmount);
 }
